@@ -34,27 +34,50 @@ public class memory {
         while (replay == true) {
             resetAffiche();
             afficheMatr();
-            System.out.println("Choisir la ligne de la première carte : (0/1)");
-            x = sc.nextInt();
-            System.out.println("Choisir la colonne de la première carte : (0/1)");
-            y = sc.nextInt();
+            do {
+                System.out.println("Choisir la ligne de la première carte : (0/1)");
+                x = sc.nextInt();
+                if (x<0 || x>1) {
+                    System.out.println("Mauvaise entree, recommencez");
+                }
+            }while (x<0 || x>1);
+            do {
+                System.out.println("Choisir la colonne de la première carte : (0/1)");
+                y = sc.nextInt();
+                if (x<0 || x>1) {
+                    System.out.println("Mauvaise entree, recommencez");
+                }
+            }while (y<0 || y>1);
             Carte tempCarte1 = findCartes(x, y);
             tempCarte1.returned();
             afficheMatr();
             Carte tempCarte2 = null;
             do {
-                System.out.println("Choisir la ligne de la deuxieme carte : (0/1)");
-                x = sc.nextInt();
-                System.out.println("Choisir la colonne de la deuxieme carte : (0/1)");
-                y = sc.nextInt();
+                do {
+                    System.out.println("Choisir la ligne de la deuxieme carte : (0/1)");
+                    x = sc.nextInt();
+                    if (x<0 || x>1) {
+                        System.out.println("Mauvaise entree, recommencez");
+                    }
+                }while (x<0 || x>1);
+                do {
+                    System.out.println("Choisir la colonne de la deuxieme carte : (0/1)");
+                    y = sc.nextInt();
+                    if (x<0 || x>1) {
+                        System.out.println("Mauvaise entree, recommencez");
+                    }
+                }while (y<0 || y>1);
                 tempCarte2 = findCartes(x, y);
+                if(tempCarte1.X == tempCarte2.X && tempCarte1.Y == tempCarte2.Y){
+                    System.out.println("Vous avez selectionner la meme carte, recommencez !!");
+                }
             } while (tempCarte1.X == tempCarte2.X && tempCarte1.Y == tempCarte2.Y);
             tempCarte2.returned();
             afficheMatr();
             if (tempCarte1.isSame(tempCarte2.screenValue)) {
                 System.out.println("Vous avez gagné !!!!");
             } else {
-                System.out.println("Ta perdu !!!!");
+                System.out.println("Vous avez perdu !!!!");
             }
             System.out.println("Voulez-vous rejouer ? : (0/1)");
             int replaySelect = sc.nextInt();
@@ -115,7 +138,7 @@ public class memory {
             for (int j = 0; j < medium; j++) {
                 for (Carte ma_carte : listeCartes) {
                     if (ma_carte.X == i && ma_carte.Y == j) {
-                        System.out.print("      " + ma_carte.screenValue);
+                        System.out.print("   " + ma_carte.screenValue+"         " );
                     }
                 }
             }
