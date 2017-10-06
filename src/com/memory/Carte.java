@@ -26,4 +26,6 @@ public class Carte {
     public void returned() {
         screenValue = value;
     }
+
+    public void toto() {}
 }
