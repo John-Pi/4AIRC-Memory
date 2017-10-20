@@ -18,7 +18,7 @@ public class memory {
     public memory() {
 
     }
-
+/*
     public void start() {
         listeCartes = new ArrayList<Carte>();
         createListe();
@@ -117,7 +117,7 @@ public class memory {
         /*temp = new Carte(0, 2, "c");
         listeCartes.add(temp);
         temp = new Carte(1, 2, "c");
-        listeCartes.add(temp);*/
+        listeCartes.add(temp);
     }
 
     public void afficheMatr() {
@@ -146,6 +146,6 @@ public class memory {
         }
 
     }
-
+*/
 
 }

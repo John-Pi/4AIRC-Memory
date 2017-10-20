@@ -1,31 +1,57 @@
 package com.memory;
 
-/**
- * Created by Johnpi on 04/10/2017.
- */
 public class Carte {
-    private String value;
-    public int Y;
-    public int X;
-    public String screenValue;
+    public int x;
+    public int y;
+    public boolean etat = false;
+    public String valeurCarte;
 
-    public Carte(int X, int Y, String value) {
-        this.X = X;
-        this.Y = Y;
-        this.value = value;
-        this.screenValue = "X";
+    public Carte(int x, int y, String valeurCarte) {
+        this.x = x;
+        this.y = y;
+        this.valeurCarte = valeurCarte;
     }
 
-    public boolean isSame(String name2) {
-        if (name2.equals(value)) {
-            return true;
+    public void RetournerCarte() {
+        if (etat == false) {
+            etat = true;
+        } else {
+            etat = false;
         }
-        return false;
     }
 
-    public void returned() {
-        screenValue = value;
+    public int getX() {
+        return x;
     }
 
-    public void toto() {}
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public boolean isEtat() {
+        return etat;
+    }
+
+    public void setEtat(boolean etat) {
+        this.etat = etat;
+    }
+
+    public String getValeurCarte() {
+        return valeurCarte;
+    }
+
+    public void setValeurCarte(String valeurCarte) {
+        this.valeurCarte = valeurCarte;
+    }
 }
+
+
+
