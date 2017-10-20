@@ -10,6 +10,7 @@ public class Main {
        // memory.start();
         Paquet paquet = new Paquet();
         paquet.affichepaquetTEST();
+        System.out.println(paquet.findCarte(3,2).getValeurCarte());
 
     }
 

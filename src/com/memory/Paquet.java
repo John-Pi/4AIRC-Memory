@@ -13,11 +13,6 @@ public class Paquet {
         AssignerValeur();
     }
 
-    public Carte FindCarte(int x, int y) {
-
-        return null;
-    }
-
     public void RetounerCarte(Carte carte) {
 
 
@@ -37,14 +32,14 @@ public class Paquet {
 
     private void AssignerValeur() {
         ArrayList<String> tableVal = new ArrayList<String>();
-        for (int i = 0;i<12;i++){
+        for (int i = 0; i < 12; i++) {
             tableVal.add(Integer.toString(i));
             tableVal.add(Integer.toString(i));
         }
         Collections.shuffle(tableVal);
         System.out.println(tableVal.toString());
         int k = 0;
-        for (Carte carte:listeCartes){
+        for (Carte carte : listeCartes) {
             carte.setValeurCarte(tableVal.get(k));
             k++;
         }
@@ -57,4 +52,13 @@ public class Paquet {
             i++;
         }
     }
+
+    public Carte findCarte(int x, int y) {
+
+        for (Carte carte : listeCartes) {
+            if (carte.x == x && carte.y == y) return carte;
+        }
+        return null;
+    }
+
 }
