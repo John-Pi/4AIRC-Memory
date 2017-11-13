@@ -3,7 +3,7 @@ package com.memory;
 public class JeuMemory {
 
     private Paquet paquetCartes;
-    private Carte carte1, carte2;
+    private Carte carte1, carte2, carteF;
     private int coupsRestant, pairesTrouvees;
 
     public JeuMemory(){
@@ -11,13 +11,17 @@ public class JeuMemory {
     }
 
     public Carte FindCarte(int x, int y){
-
-        return null;
+        carteF = paquetCartes.findCarte(x,y);
+        return carteF;
     }
 
     public boolean SontPaires(Carte carte1, Carte carte2){
-        boolean res = true;
-
+        if(carte1.getValeurCarte() == carte2.getValeurCarte()){
+            boolean res = true;
+        }
+        else{
+            res = false;
+        }
         return res;
     }
 
@@ -25,7 +29,11 @@ public class JeuMemory {
 
     }
 
-    public void Retourner(Carte carteRet){
+    public void RetournerCarte(int x, int y){
 
+    }
+
+    public Paquet getPaquetCartes() {
+        return paquetCartes;
     }
 }
