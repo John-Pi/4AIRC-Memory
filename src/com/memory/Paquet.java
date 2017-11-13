@@ -48,7 +48,7 @@ public class Paquet {
     public void affichepaquetTEST() {
         int i = 1;
         for (Carte carte : listeCartes) {
-            System.out.println("Carte n°" + i + " Coordonées x" + carte.x + "y" + carte.y + " value = " + carte.valeurCarte);
+            System.out.println("Carte n°" + i + " Coordonées x" + carte.x + "y" + carte.y + " value = " + carte.valeurCarte + " etat = " + carte.etat);
             i++;
         }
     }

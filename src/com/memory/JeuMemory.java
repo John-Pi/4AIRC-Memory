@@ -7,7 +7,7 @@ public class JeuMemory {
     private int coupsRestant, pairesTrouvees;
 
     public JeuMemory(){
-
+        paquetCartes = new Paquet();
     }
 
     public Carte FindCarte(int x, int y){
@@ -16,11 +16,9 @@ public class JeuMemory {
     }
 
     public boolean SontPaires(Carte carte1, Carte carte2){
-        if(carte1.getValeurCarte() == carte2.getValeurCarte()){
-            boolean res = true;
-        }
-        else{
-            res = false;
+        boolean res = false;
+        if(carte1.getValeurCarte().equals(carte2.getValeurCarte())){
+            res = true;
         }
         return res;
     }
@@ -30,10 +28,16 @@ public class JeuMemory {
     }
 
     public void RetournerCarte(int x, int y){
-
+        carteF = paquetCartes.findCarte(x, y);
+        carteF.RetournerCarte();
     }
 
     public Paquet getPaquetCartes() {
         return paquetCartes;
     }
+
+    public void AffichePaquetTest(){
+        paquetCartes.affichepaquetTEST();
+    }
+
 }
