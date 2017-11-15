@@ -8,9 +8,8 @@ public class Main {
     public static void main(String[] args) {
         //memory = new memory();
        // memory.start();
-        Paquet paquet = new Paquet();
-        paquet.affichepaquetTEST();
-        System.out.println(paquet.findCarte(3,2).getValeurCarte());
+        ControleurJeu controleurJeu = new ControleurJeu();
+        controleurJeu.LauchGame();
 
     }
 

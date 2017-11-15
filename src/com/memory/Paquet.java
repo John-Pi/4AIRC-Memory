@@ -6,16 +6,13 @@ import java.util.Collections;
 public class Paquet {
 
     private static ArrayList<Carte> listeCartes = new ArrayList<Carte>();
+    private int paireRestante;
 
     public Paquet() {
         ConstruirePaquet();
         AssignerValeur();
     }
 
-    public void RetounerCarte(Carte carte) {
-
-
-    }
 
     private void ConstruirePaquet() {
         int nombreCartePaquet = 24;
@@ -27,6 +24,7 @@ public class Paquet {
                 listeCartes.add(new Carte(nbLines, nbColonne, "noValue"));
             }
         }
+        paireRestante = (listeCartes.size()/2);
     }
 
     private void AssignerValeur() {
@@ -77,4 +75,22 @@ public class Paquet {
         return tab;
 
     }
+    public void trouverCarte(Carte carte){
+        carte.TrouverCarte();
+    }
+
+    public void RetournerCarte(Carte carte) {
+        carte.RetournerCarte();
+    }
+
+    public void paireTrouvee(Carte carte1, Carte carte2) {
+        carte1.TrouverCarte();
+        carte2.TrouverCarte();
+        paireRestante--;
+    }
+
+    public int getPaireRestantes() {
+        return this.paireRestante;
+    }
+
 }

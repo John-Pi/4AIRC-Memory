@@ -18,4 +18,20 @@ public class State {
 
     //CARTE NON DEJA TROUVEE
     public static final int errorCarteTrouvee = 5;
+
+    //VICTOIRE
+    public static final int victory = 6;
+
+    //VICTOIRE
+    public static final int defeat = 7;
+
+    //PREMIERE CARTE CHOISI
+    public static final int firstCardChoosed = 8;
+
+    //DEBUT D'UN ESSAI
+    public static final int startTry = 9;
+    public static final int pairControl = 10;
+    public static final int coupGagnant = 11;
+
+    public static final int coupPerdant = 12;
 }
