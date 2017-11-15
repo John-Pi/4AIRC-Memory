@@ -2,11 +2,12 @@ package com.memory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MemoryCMDLine {
 
-    private final Scanner sc;
+    private Scanner sc;
     private Paquet paquet;
     private ArrayList<Carte> listeCartes;
     private int maxX;
@@ -88,10 +89,31 @@ public class MemoryCMDLine {
 
     public int[] retournerCarte() {
         int[] coord = new int[2];
+        boolean wrongtype = false;
         System.out.print("VEUILLEZ SELECTIONNER LA COORDONEE X : ");
-        coord[1] = sc.nextInt();
+        do {
+                if(sc.hasNextInt()){
+                    coord[1] = sc.nextInt();
+                    wrongtype = false;
+                }else {
+                    System.out.println("VEUILLEZ SAISIR UN CHIFFRE !");
+                    System.out.print("VEUILLEZ SELECTIONNER LA COORDONEE X : ");
+                    sc.next();
+                    wrongtype = true;
+                }
+        } while (wrongtype);
         System.out.print("VEUILLEZ SELECTIONNER LA COORDONEE Y : ");
-        coord[0] = sc.nextInt();
+        do {
+            if(sc.hasNextInt()){
+                coord[0] = sc.nextInt();
+                wrongtype = false;
+            }else {
+                System.out.println("VEUILLEZ SAISIR UN CHIFFRE !");
+                System.out.print("VEUILLEZ SELECTIONNER LA COORDONEE Y : ");
+                sc.next();
+                wrongtype = true;
+            }
+        } while (wrongtype);
         System.out.println();
         return coord;
     }
@@ -102,11 +124,11 @@ public class MemoryCMDLine {
 
 
     public void coupJoue(int coupRestant, int paireRestantes, boolean reussite) {
-        if (reussite){
+        if (reussite) {
             System.out.print("BRAVO ! : COUP GAGNE");
-        }else{
+        } else {
             System.out.print("DOMMAGE ! : COUP PERDU \n");
         }
-        System.out.println("IL VOUS RESTE : " + coupRestant + " COUPS POUR TROUVER "+paireRestantes+" PAIRES \n");
+        System.out.println("IL VOUS RESTE : " + coupRestant + " COUPS POUR TROUVER " + paireRestantes + " PAIRES \n");
     }
 }
