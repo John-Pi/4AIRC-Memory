@@ -8,7 +8,6 @@ public class Paquet {
     private static ArrayList<Carte> listeCartes = new ArrayList<Carte>();
 
     public Paquet() {
-
         ConstruirePaquet();
         AssignerValeur();
     }

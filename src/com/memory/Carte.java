@@ -4,6 +4,7 @@ public class Carte {
     public int x;
     public int y;
     public boolean etat = false;
+    public boolean trouvee = false;
     public String valeurCarte;
 
     public Carte(int x, int y, String valeurCarte) {
@@ -18,6 +19,10 @@ public class Carte {
         } else {
             etat = false;
         }
+    }
+
+    public void TrouverCarte(){
+        trouvee = true;
     }
 
     public int getX() {

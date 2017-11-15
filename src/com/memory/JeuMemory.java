@@ -3,7 +3,7 @@ package com.memory;
 public class JeuMemory {
 
     private Paquet paquetCartes;
-    private Carte carte1, carte2, carteF;
+    private Carte carte1 = null, carte2 = null, carteF;
     private int coupsRestant, pairesTrouvees;
 
     public JeuMemory(){
@@ -12,6 +12,7 @@ public class JeuMemory {
 
     public Carte FindCarte(int x, int y){
         carteF = paquetCartes.findCarte(x,y);
+
         return carteF;
     }
 
@@ -23,13 +24,8 @@ public class JeuMemory {
         return res;
     }
 
-    public void Traitement(boolean resPaire){
-
-    }
-
-    public void RetournerCarte(int x, int y){
-        carteF = paquetCartes.findCarte(x, y);
-        carteF.RetournerCarte();
+    public void RetournerCarte(Carte carte){
+        carte.RetournerCarte();
     }
 
     public Paquet getPaquetCartes() {
@@ -38,6 +34,13 @@ public class JeuMemory {
 
     public void AffichePaquetTest(){
         paquetCartes.affichepaquetTEST();
+    }
+
+    public int IsValide(Carte carte){
+        if(carte.trouvee == true)return State.errorCarteTrouvee;
+        if(carte.etat == true)return State.errorCarteDejaRet;
+
+        return State.CarteValide;
     }
 
 }
