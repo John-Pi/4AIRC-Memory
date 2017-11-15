@@ -60,4 +60,21 @@ public class Paquet {
         return null;
     }
 
+    public ArrayList<Carte> getList() {
+        return listeCartes;
+    }
+
+    public int[] getMatrixMaxs() {
+        int maxX = 0;
+        int maxY = 0;
+        for (Carte carte : listeCartes) {
+            if (carte.x > maxX) maxX = carte.x;
+            if (carte.y > maxY) maxY = carte.y;
+        }
+        int tab[] = new int[2];
+        tab[0] = maxX;
+        tab[1] = maxY;
+        return tab;
+
+    }
 }
