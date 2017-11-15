@@ -6,16 +6,13 @@ import java.util.Collections;
 public class Paquet {
 
     private static ArrayList<Carte> listeCartes = new ArrayList<Carte>();
+    private int paireRestante;
 
     public Paquet() {
         ConstruirePaquet();
         AssignerValeur();
     }
 
-    public void RetounerCarte(Carte carte) {
-
-
-    }
 
     private void ConstruirePaquet() {
         int nombreCartePaquet = 24;
@@ -27,6 +24,7 @@ public class Paquet {
                 listeCartes.add(new Carte(nbLines, nbColonne, "noValue"));
             }
         }
+        paireRestante = (listeCartes.size()/2);
     }
 
     private void AssignerValeur() {
@@ -58,6 +56,41 @@ public class Paquet {
             if (carte.x == x && carte.y == y) return carte;
         }
         return null;
+    }
+
+    public ArrayList<Carte> getList() {
+        return listeCartes;
+    }
+
+    public int[] getMatrixMaxs() {
+        int maxX = 0;
+        int maxY = 0;
+        for (Carte carte : listeCartes) {
+            if (carte.x > maxX) maxX = carte.x;
+            if (carte.y > maxY) maxY = carte.y;
+        }
+        int tab[] = new int[2];
+        tab[0] = maxX;
+        tab[1] = maxY;
+        return tab;
+
+    }
+    public void trouverCarte(Carte carte){
+        carte.TrouverCarte();
+    }
+
+    public void RetournerCarte(Carte carte) {
+        carte.RetournerCarte();
+    }
+
+    public void paireTrouvee(Carte carte1, Carte carte2) {
+        carte1.TrouverCarte();
+        carte2.TrouverCarte();
+        paireRestante--;
+    }
+
+    public int getPaireRestantes() {
+        return this.paireRestante;
     }
 
 }

@@ -8,6 +8,7 @@ public class JeuMemory {
 
     public JeuMemory(){
         paquetCartes = new Paquet();
+        coupsRestant = 10;
     }
 
     public Carte FindCarte(int x, int y){
@@ -21,11 +22,13 @@ public class JeuMemory {
         if(carte1.getValeurCarte().equals(carte2.getValeurCarte())){
             res = true;
         }
+        coupsRestant--;
         return res;
+
     }
 
     public void RetournerCarte(Carte carte){
-        carte.RetournerCarte();
+        paquetCartes.RetournerCarte(carte);
     }
 
     public Paquet getPaquetCartes() {
@@ -37,10 +40,21 @@ public class JeuMemory {
     }
 
     public int IsValide(Carte carte){
-        if(carte.trouvee == true)return State.errorCarteTrouvee;
-        if(carte.etat == true)return State.errorCarteDejaRet;
+        if (carte == null) return State.errorHorsPaquet;
+        if(carte.trouvee)return State.errorCarteTrouvee;
+        if(carte.etat)return State.errorCarteDejaRet;
 
         return State.CarteValide;
     }
 
+    public void paireTrouvee(Carte carte1, Carte carte2) {
+        paquetCartes.paireTrouvee(carte1, carte2);
+    }
+    public int getPairesRestantes(){
+        return paquetCartes.getPaireRestantes();
+    }
+
+    public int getCoupRestants() {
+        return coupsRestant;
+    }
 }
