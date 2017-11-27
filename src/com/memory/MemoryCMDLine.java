@@ -92,22 +92,22 @@ public class MemoryCMDLine {
         boolean wrongtype = false;
         System.out.print("VEUILLEZ SELECTIONNER LA COORDONEE X : ");
         do {
-                if(sc.hasNextInt()){
-                    coord[1] = sc.nextInt();
-                    wrongtype = false;
-                }else {
-                    System.out.println("VEUILLEZ SAISIR UN CHIFFRE !");
-                    System.out.print("VEUILLEZ SELECTIONNER LA COORDONEE X : ");
-                    sc.next();
-                    wrongtype = true;
-                }
+            if (sc.hasNextInt()) {
+                coord[1] = sc.nextInt();
+                wrongtype = false;
+            } else {
+                System.out.println("VEUILLEZ SAISIR UN CHIFFRE !");
+                System.out.print("VEUILLEZ SELECTIONNER LA COORDONEE X : ");
+                sc.next();
+                wrongtype = true;
+            }
         } while (wrongtype);
         System.out.print("VEUILLEZ SELECTIONNER LA COORDONEE Y : ");
         do {
-            if(sc.hasNextInt()){
+            if (sc.hasNextInt()) {
                 coord[0] = sc.nextInt();
                 wrongtype = false;
-            }else {
+            } else {
                 System.out.println("VEUILLEZ SAISIR UN CHIFFRE !");
                 System.out.print("VEUILLEZ SELECTIONNER LA COORDONEE Y : ");
                 sc.next();
@@ -130,5 +130,46 @@ public class MemoryCMDLine {
             System.out.print("DOMMAGE ! : COUP PERDU \n");
         }
         System.out.println("IL VOUS RESTE : " + coupRestant + " COUPS POUR TROUVER " + paireRestantes + " PAIRES \n");
+    }
+
+    public void partieGagnee() {
+        System.out.println("!!!!!! BRAVO PARTIE GAGNEE !!!!!!\n");
+    }
+
+    public void partiePerdue() {
+        System.out.println("DOMMAGE PARTIE PERDUE :^)\n");
+    }
+
+    public boolean rejouer() {
+        boolean Replay = true;
+        boolean wrongtype;
+        int res = 0;
+
+        System.out.println("VOULEZ-VOUS REJOUER [O:1/N:0]?");
+        do {
+            if (sc.hasNextInt()) {
+                res = sc.nextInt();
+                wrongtype = false;
+            } else {
+                System.out.println("MAUVAISE ENTREE (TAPER : 1 POUR OUI / 0 POUR NON)");
+                System.out.println("VOULEZ-VOUS REJOUER [O:1/N:0]?");
+                sc.next();
+                wrongtype = true;
+            }
+        } while (wrongtype);
+
+        if (res == 1) {
+            Replay = true;
+        }
+        if (res == 0) {
+            Replay = false;
+        }
+
+        System.out.println("\n\n");
+        return Replay;
+    }
+
+    public void messageFin() {
+        System.out.println("FIN DE PARTIE, MERCI D'AVOIR JOUE !!");
     }
 }

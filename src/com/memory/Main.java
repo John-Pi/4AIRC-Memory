@@ -9,7 +9,7 @@ public class Main {
         //memory = new memory();
        // memory.start();
         ControleurJeu controleurJeu = new ControleurJeu();
-        controleurJeu.LauchGame();
+        controleurJeu.LauchGameCMD();
 
     }
 

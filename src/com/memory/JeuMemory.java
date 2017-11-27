@@ -8,7 +8,7 @@ public class JeuMemory {
 
     public JeuMemory(){
         paquetCartes = new Paquet();
-        coupsRestant = 10;
+        coupsRestant = 2;
     }
 
     public Carte FindCarte(int x, int y){

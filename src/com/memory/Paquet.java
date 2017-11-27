@@ -5,10 +5,11 @@ import java.util.Collections;
 
 public class Paquet {
 
-    private static ArrayList<Carte> listeCartes = new ArrayList<Carte>();
+    private static ArrayList<Carte> listeCartes;
     private int paireRestante;
 
     public Paquet() {
+        listeCartes = new ArrayList<Carte>();
         ConstruirePaquet();
         AssignerValeur();
     }
