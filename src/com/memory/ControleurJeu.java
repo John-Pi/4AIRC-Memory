@@ -10,6 +10,8 @@ public class ControleurJeu {
     private boolean Rejouer = false;
 
     public ControleurJeu() {
+        jeuMemory = new JeuMemory();
+        RecupPaquet();
     }
 
     public void RecupPaquet() {
@@ -94,4 +96,7 @@ public class ControleurJeu {
         memoryCMDLine.messageFin();
     }
 
+    public Paquet getPaquet() {
+        return paquet;
+    }
 }
