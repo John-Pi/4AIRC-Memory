@@ -8,8 +8,7 @@ public class Main {
     public static void main(String[] args) {
         //memory = new memory();
        // memory.start();
-        ControleurJeu controleurJeu = new ControleurJeu();
-        controleurJeu.LauchGameCMD();
+       LauncherGUI launcherGUI = new LauncherGUI();
 
     }
 

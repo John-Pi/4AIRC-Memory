@@ -23,10 +23,10 @@ public class LauncherGUI {
         JFrame frame;
         Dimension dim;
 
-        dim = new Dimension(700, 700);
+        dim = new Dimension(600, 400);
 
 
-        frame = new memoryGameGUI("Jeu d'échec", new ControleurJeu(), dim);
+        frame = new memoryGameGUI("Jeu du Memory", new ControleurJeu(), dim);
         frame.setTitle("Memory");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(600, 10);

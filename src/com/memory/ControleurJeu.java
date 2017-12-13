@@ -8,10 +8,13 @@ public class ControleurJeu {
     private int state;
     private Carte carte1 = null, carte2 = null;
     private boolean Rejouer = false;
+    Carte tempcarte;
+
 
     public ControleurJeu() {
         jeuMemory = new JeuMemory();
         RecupPaquet();
+        state = State.startTry;
     }
 
     public void RecupPaquet() {
@@ -19,7 +22,62 @@ public class ControleurJeu {
     }
 
 
-    public void RetournerCarte(int x, int y) {
+    public int RetournerCarte(int x, int y) {
+
+        switch (state) {
+
+            case State.startTry:
+                tempcarte = jeuMemory.FindCarte(x, y);
+                if (jeuMemory.IsValide(tempcarte) == State.CarteValide) {
+                    jeuMemory.RetournerCarte(tempcarte);
+                    state = State.firstCardChoosed;
+                    carte1 = tempcarte;
+                }
+                break;
+            case State.firstCardChoosed:
+                tempcarte = jeuMemory.FindCarte(x, y);
+                if (jeuMemory.IsValide(tempcarte) == State.CarteValide) {
+                    jeuMemory.RetournerCarte(tempcarte);
+                    carte2 = tempcarte;
+                    if (jeuMemory.SontPaires(carte1, carte2)) {
+                        state = State.startTry;
+                        jeuMemory.paireTrouvee(carte1, carte2);
+                        carte1 = null;
+                        carte2 = null;
+                        return State.coupGagnant;
+                    } else {
+                        state = State.startTry;
+                        jeuMemory.RetournerCarte(carte1);
+                        jeuMemory.RetournerCarte(carte2);
+                        carte1 = null;
+                        carte2 = null;
+                        return State.coupPerdant;
+                    }
+                }
+                break;
+
+
+            case State.pairControl:
+                if (jeuMemory.SontPaires(carte1, carte2)) {
+                    state = State.coupGagnant;
+                } else {
+                    state = State.coupPerdant;
+                }
+                break;
+            case State.coupGagnant:
+                state = State.startTry;
+                break;
+            case State.coupPerdant:
+                memoryCMDLine.affichageJeu();
+                jeuMemory.RetournerCarte(carte1);
+                jeuMemory.RetournerCarte(carte2);
+                carte1 = null;
+                carte2 = null;
+                state = State.startTry;
+                memoryCMDLine.coupJoue(jeuMemory.getCoupRestants(), jeuMemory.getPairesRestantes(), false);
+                break;
+        }
+        return state;
     }
 
     public void LauchGameCMD() {

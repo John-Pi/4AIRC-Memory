@@ -6,15 +6,15 @@ import javax.swing.*;
 
 public class JPanelCustom extends JPanel {
     private static final long serialVersionUID = 1L;
-    private Image img;
+    Carte carte;
+    int x, y;
 
-    private int x, y;
-
-    public JPanelCustom(LayoutManager lm, int x, int y,String img) {
+    public JPanelCustom(LayoutManager lm, int x, int y,Carte carte) {
         super(lm);
         this.x = x;
         this.y = y;
-        this.img = new ImageIcon(img).getImage();
+        this.carte = carte;
+        this.setLayout(new BorderLayout());
     }
 
     public int[] getCoord() {
@@ -23,7 +23,6 @@ public class JPanelCustom extends JPanel {
         tab[1] = this.y;
         return tab;
     }
-    public void paintComponent(Graphics g) {
-        g.drawImage(img, 0, 0, this);
-    }
+
+
 }
