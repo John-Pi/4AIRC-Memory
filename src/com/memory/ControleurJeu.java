@@ -157,4 +157,7 @@ public class ControleurJeu {
     public Paquet getPaquet() {
         return paquet;
     }
+    public int isValide(int x,int y){
+        return jeuMemory.IsValide(jeuMemory.FindCarte(x,y));
+    }
 }

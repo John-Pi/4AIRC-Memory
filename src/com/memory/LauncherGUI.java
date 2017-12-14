@@ -3,7 +3,7 @@ package com.memory;
 
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 
 /**
@@ -13,6 +13,7 @@ import javax.swing.JFrame;
  * les Ã©changes passent par le contrÃ´leur (ChessGameControlers)
  */
 public class LauncherGUI {
+
 
     /**
      * @param args
@@ -24,7 +25,6 @@ public class LauncherGUI {
         Dimension dim;
 
         dim = new Dimension(600, 400);
-
 
         frame = new memoryGameGUI("Jeu du Memory", new ControleurJeu(), dim);
         frame.setTitle("Memory");
