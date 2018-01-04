@@ -19,7 +19,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
      *
      */
     private static final long serialVersionUID = 1L;
-    private final FenetreAcceuil fenetreAcceuil;
+    private  FenetreAcceuil fenetreAcceuil;
 
     private Paquet paquet;
 
@@ -40,6 +40,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
 
 
     public memoryGameGUI(ControleurJeu controleurJeu, Dimension dim, FenetreAcceuil fenetreAcceuil) {
+        fenetreAcceuil.setCoupRestant(controleurJeu.getCoupRestants());
         this.fenetreAcceuil = fenetreAcceuil;
         Dimension boardSize = dim;
         this.controler = controleurJeu;
@@ -80,7 +81,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
                 Image myPicture = null;
                 try {
                     g = new File(
-                            "C:\\Users\\Johnpi\\Documents\\Ecolodge\\Projet_IRC\\4AIRC-Memory\\media\\"
+                            "4AIRC-Memory/media/"
                                     + "carte" + ((JPanelCustom) c).carte.valeurCarte + ".png");
                     myPicture = ImageIO.read(g);
                     myPicture = myPicture.getScaledInstance(c.getWidth(),c.getHeight(), Image.SCALE_DEFAULT);
@@ -125,6 +126,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
 
             case State.coupPerdant:
                 System.out.println("coup perdant");
+                new Audio("NousPasLesMemes.wav");
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e1) {
@@ -135,6 +137,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
                 memoryBoard.invalidate();
                 memoryBoard.validate();
                 memoryBoard.repaint();
+
                 break;
             case State.victory:
                 System.out.println("coup gagnant");
@@ -152,7 +155,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
                 memoryBoard.repaint();
                 fenetreAcceuil.endPopup(true);
             case State.defeat:
-                System.out.println("coup perdant");
+                new Audio("CaCestCon.wav");
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e1) {
@@ -166,6 +169,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
                 fenetreAcceuil.endPopup(false);
                 break;
         }
+        fenetreAcceuil.setCoupRestant(controler.getCoupRestants());
 
     }
 

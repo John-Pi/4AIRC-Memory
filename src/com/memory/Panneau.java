@@ -11,7 +11,7 @@ public class Panneau extends JPanel {
 
         try {
             Image img = ImageIO.read(new File(
-                    "C:\\Users\\Johnpi\\Documents\\Ecolodge\\Projet_IRC\\4AIRC-Memory\\media\\couv1.jpg"));
+                    "4AIRC-Memory/media/couv1.jpg"));
             g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
         } catch (IOException e) {
             e.printStackTrace();

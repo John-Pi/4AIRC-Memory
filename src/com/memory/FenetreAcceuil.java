@@ -6,17 +6,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static javax.swing.JOptionPane.CLOSED_OPTION;
-import static javax.swing.JOptionPane.NO_OPTION;
-import static javax.swing.JOptionPane.YES_OPTION;
+import static javax.swing.JOptionPane.*;
 
 public class FenetreAcceuil extends JFrame {
 
     Panneau panneau = new Panneau();
     private JMenuBar menuBar = new JMenuBar();
     private JMenu newGame = new JMenu("Nouvelle Partie");
-    private JMenu options = new JMenu("Options");
+    private JMenuItem options = new JMenuItem("Options");
+    private JMenuItem score  = new JMenuItem("         ");
     private JMenuItem start = new JMenuItem("Start");
+    private int nbessais = 24;
 
     public FenetreAcceuil() {
         this.setTitle("Jeu du Memory");
@@ -27,12 +27,13 @@ public class FenetreAcceuil extends JFrame {
 
         this.menuBar.add(newGame);
         this.menuBar.add(options);
+        this.menuBar.add(score);
         this.setJMenuBar(menuBar);
         this.newGame.add(start);
         this.setContentPane(panneau);
 
         this.setVisible(true);
-        new Audio("Generique");
+        new Audio("Generique.wav");
 
         start.addActionListener(new ActionListener() {
             @Override
@@ -40,11 +41,42 @@ public class FenetreAcceuil extends JFrame {
                 launchGame();
             }
         });
+
+        options.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showOptions();
+            }
+        });
+    }
+
+    private void showOptions() {
+        Object[] options = {"Facile : 30 coups",
+                "moyen : 20 coups",
+                "MEMORY EXTREM : 12 coups"};
+        int n = JOptionPane.showOptionDialog(this,
+                "Choisissez votre niveaux",
+                "Choisir la Difficulté",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[2]);
+        switch (n){
+            case YES_OPTION: nbessais = 30;
+            break;
+            case NO_OPTION: nbessais = 20;
+            break;
+            case CANCEL_OPTION: nbessais = 12;
+            break;
+        }
+        launchGame();
+
     }
 
     private void launchGame() {
         getContentPane().removeAll();
-        setContentPane(new memoryGameGUI(new ControleurJeu(), getContentPane().getSize(), this));
+        setContentPane(new memoryGameGUI(new ControleurJeu(nbessais), getContentPane().getSize(), this));
         revalidate();
     }
 
@@ -76,5 +108,9 @@ public class FenetreAcceuil extends JFrame {
 
     private void endGame() {
         System.exit(0);
+    }
+
+    public void setCoupRestant(int n){
+        score.setText("Coup restants : "+n);
     }
 }

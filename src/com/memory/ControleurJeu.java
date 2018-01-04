@@ -11,8 +11,8 @@ public class ControleurJeu {
     Carte tempcarte;
 
 
-    public ControleurJeu() {
-        jeuMemory = new JeuMemory();
+    public ControleurJeu(int nbessais) {
+        jeuMemory = new JeuMemory(nbessais);
         RecupPaquet();
         state = State.startTry;
     }
@@ -72,7 +72,7 @@ public class ControleurJeu {
     public void LauchGameCMD() {
 
         do {
-            jeuMemory = new JeuMemory();
+            jeuMemory = new JeuMemory(24);
             RecupPaquet();
             memoryCMDLine = new MemoryCMDLine();
             memoryCMDLine.setPaquet(paquet);
@@ -148,5 +148,8 @@ public class ControleurJeu {
     }
     public int isValide(int x,int y){
         return jeuMemory.IsValide(jeuMemory.FindCarte(x,y));
+    }
+    public int getCoupRestants(){
+        return jeuMemory.getCoupRestants();
     }
 }
