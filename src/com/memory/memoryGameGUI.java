@@ -81,7 +81,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
                 Image myPicture = null;
                 try {
                     g = new File(
-                            "4AIRC-Memory/media/"
+                            "media/"
                                     + "carte" + ((JPanelCustom) c).carte.valeurCarte + ".png");
                     myPicture = ImageIO.read(g);
                     myPicture = myPicture.getScaledInstance(c.getWidth(),c.getHeight(), Image.SCALE_DEFAULT);
