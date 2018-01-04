@@ -21,7 +21,7 @@ public class Audio {
     public Audio(String file) {
 
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("4AIRC-Memory/media/"+file).getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("media/"+file).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
