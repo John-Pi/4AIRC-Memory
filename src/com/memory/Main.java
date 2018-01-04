@@ -6,11 +6,8 @@ import java.util.Scanner;
 public class Main {
     private static memory memory;
     public static void main(String[] args) {
-        //memory = new memory();
-       // memory.start();
-        ControleurJeu controleurJeu = new ControleurJeu();
-        controleurJeu.LauchGameCMD();
 
+        FenetreAcceuil acc = new FenetreAcceuil();
     }
 
 }

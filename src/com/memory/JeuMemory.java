@@ -6,9 +6,9 @@ public class JeuMemory {
     private Carte carte1 = null, carte2 = null, carteF;
     private int coupsRestant, pairesTrouvees;
 
-    public JeuMemory(){
+    public JeuMemory(int nbessais){
         paquetCartes = new Paquet();
-        coupsRestant = 2;
+        coupsRestant = nbessais;
     }
 
     public Carte FindCarte(int x, int y){
