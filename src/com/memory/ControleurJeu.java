@@ -44,38 +44,27 @@ public class ControleurJeu {
                         jeuMemory.paireTrouvee(carte1, carte2);
                         carte1 = null;
                         carte2 = null;
-                        return State.coupGagnant;
+                        if (jeuMemory.getPairesRestantes() == 0){
+                            return State.victory;
+                        }else {
+                            return State.coupGagnant;
+                        }
                     } else {
                         state = State.startTry;
                         jeuMemory.RetournerCarte(carte1);
                         jeuMemory.RetournerCarte(carte2);
                         carte1 = null;
                         carte2 = null;
-                        return State.coupPerdant;
+                        if (jeuMemory.getCoupRestants() == 0){
+                            return State.defeat;
+                        }else {
+                            return State.coupPerdant;
+                        }
+
                     }
                 }
                 break;
 
-
-            case State.pairControl:
-                if (jeuMemory.SontPaires(carte1, carte2)) {
-                    state = State.coupGagnant;
-                } else {
-                    state = State.coupPerdant;
-                }
-                break;
-            case State.coupGagnant:
-                state = State.startTry;
-                break;
-            case State.coupPerdant:
-                memoryCMDLine.affichageJeu();
-                jeuMemory.RetournerCarte(carte1);
-                jeuMemory.RetournerCarte(carte2);
-                carte1 = null;
-                carte2 = null;
-                state = State.startTry;
-                memoryCMDLine.coupJoue(jeuMemory.getCoupRestants(), jeuMemory.getPairesRestantes(), false);
-                break;
         }
         return state;
     }

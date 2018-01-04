@@ -1,11 +1,6 @@
 package com.memory;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -18,12 +13,13 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
-public class memoryGameGUI extends JFrame implements MouseListener, MouseMotionListener {
+public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionListener {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+    private final FenetreAcceuil fenetreAcceuil;
 
     private Paquet paquet;
 
@@ -43,13 +39,14 @@ public class memoryGameGUI extends JFrame implements MouseListener, MouseMotionL
     private int tempValide;
 
 
-    public memoryGameGUI(String frameName, ControleurJeu controleurJeu, Dimension dim) {
+    public memoryGameGUI(ControleurJeu controleurJeu, Dimension dim, FenetreAcceuil fenetreAcceuil) {
+        this.fenetreAcceuil = fenetreAcceuil;
         Dimension boardSize = dim;
         this.controler = controleurJeu;
         paquet = controler.getPaquet();
         int[] mat = paquet.getMatrixMaxs();
         layeredPane = new JLayeredPane();
-        getContentPane().add(layeredPane);
+        add(layeredPane);
         layeredPane.setPreferredSize(boardSize);
         layeredPane.addMouseListener(this);
         layeredPane.addMouseMotionListener(this);
@@ -80,16 +77,18 @@ public class memoryGameGUI extends JFrame implements MouseListener, MouseMotionL
             tempValide = controler.isValide(((JPanelCustom) c).x, ((JPanelCustom) c).y);
 
             if (tempValide == State.CarteValide) {
-                BufferedImage myPicture = null;
+                Image myPicture = null;
                 try {
                     g = new File(
                             "C:\\Users\\Johnpi\\Documents\\Ecolodge\\Projet_IRC\\4AIRC-Memory\\media\\"
                                     + "carte" + ((JPanelCustom) c).carte.valeurCarte + ".png");
                     myPicture = ImageIO.read(g);
+                    myPicture = myPicture.getScaledInstance(c.getWidth(),c.getHeight(), Image.SCALE_DEFAULT);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
                 JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                picLabel.setSize(c.getSize());
                 ((JPanelCustom) c).add(picLabel, BorderLayout.CENTER);
                 memoryBoard.invalidate();
                 memoryBoard.validate();
@@ -137,7 +136,35 @@ public class memoryGameGUI extends JFrame implements MouseListener, MouseMotionL
                 memoryBoard.validate();
                 memoryBoard.repaint();
                 break;
-
+            case State.victory:
+                System.out.println("coup gagnant");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                tempPanel.removeAll();
+                ((JPanelCustom) c).removeAll();
+                tempPanel.setBackground(Color.white);
+                c.setBackground(Color.white);
+                memoryBoard.invalidate();
+                memoryBoard.validate();
+                memoryBoard.repaint();
+                fenetreAcceuil.endPopup(true);
+            case State.defeat:
+                System.out.println("coup perdant");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                tempPanel.removeAll();
+                ((JPanelCustom) c).removeAll();
+                memoryBoard.invalidate();
+                memoryBoard.validate();
+                memoryBoard.repaint();
+                fenetreAcceuil.endPopup(false);
+                break;
         }
 
     }

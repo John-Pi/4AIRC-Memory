@@ -22,7 +22,7 @@ public class Audio extends Thread {
 
 
     public void run() {
-        File fichier = new File("media/" + file + ".wav");
+        File fichier = new File("C:\\Users\\Johnpi\\Documents\\Ecolodge\\Projet_IRC\\4AIRC-Memory\\media\\" + file + ".wav");
         try {
             AudioFileFormat format = AudioSystem.getAudioFileFormat(fichier);
         } catch (UnsupportedAudioFileException e1) {
