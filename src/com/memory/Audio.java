@@ -18,10 +18,10 @@ public class Audio {
     String file;
 
 
-    public Audio(String file) {
+    public Audio(String file, String theme) {
 
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("media/"+file).getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(theme+file).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
