@@ -19,6 +19,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
      *
      */
     private static final long serialVersionUID = 1L;
+    private final String theme;
     private  FenetreAcceuil fenetreAcceuil;
 
     private Paquet paquet;
@@ -39,8 +40,9 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
     private int tempValide;
 
 
-    public memoryGameGUI(ControleurJeu controleurJeu, Dimension dim, FenetreAcceuil fenetreAcceuil) {
+    public memoryGameGUI(ControleurJeu controleurJeu, Dimension dim, FenetreAcceuil fenetreAcceuil, String theme) {
         fenetreAcceuil.setCoupRestant(controleurJeu.getCoupRestants());
+        this.theme = theme;
         this.fenetreAcceuil = fenetreAcceuil;
         Dimension boardSize = dim;
         this.controler = controleurJeu;
@@ -81,7 +83,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
                 Image myPicture = null;
                 try {
                     g = new File(
-                            "media/"
+                            theme
                                     + "carte" + ((JPanelCustom) c).carte.valeurCarte + ".png");
                     myPicture = ImageIO.read(g);
                     myPicture = myPicture.getScaledInstance(c.getWidth(),c.getHeight(), Image.SCALE_DEFAULT);
@@ -126,7 +128,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
 
             case State.coupPerdant:
                 System.out.println("coup perdant");
-                new Audio("NousPasLesMemes.wav");
+                new Audio("erreur.wav",theme);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e1) {
@@ -155,7 +157,7 @@ public class memoryGameGUI extends JPanel implements MouseListener, MouseMotionL
                 memoryBoard.repaint();
                 fenetreAcceuil.endPopup(true);
             case State.defeat:
-                new Audio("CaCestCon.wav");
+                new Audio("defaite.wav",theme);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e1) {

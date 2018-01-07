@@ -10,7 +10,8 @@ import static javax.swing.JOptionPane.*;
 
 public class FenetreAcceuil extends JFrame {
 
-    Panneau panneau = new Panneau();
+    private  String theme;
+    Panneau panneau;
     private JMenuBar menuBar = new JMenuBar();
     private JMenu newGame = new JMenu("Nouvelle Partie");
     private JMenuItem options = new JMenuItem("Options");
@@ -19,6 +20,28 @@ public class FenetreAcceuil extends JFrame {
     private int nbessais = 24;
 
     public FenetreAcceuil() {
+
+        Object[] options2 = {"La 7éme compagnie",
+                "OSS 117"};
+        int n = JOptionPane.showOptionDialog(this,
+                "Quel theme de jeu emblématique voulez-vous ?",
+                "Bienvenue",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options2,
+                options2[1]);
+        switch (n){
+            case YES_OPTION: theme = "media/";
+                break;
+            case NO_OPTION: theme = "media2/";
+                break;
+            case CLOSED_OPTION:
+                endGame();
+                break;
+        }
+        panneau = new Panneau(theme);
+
         this.setTitle("Jeu du Memory");
         this.setSize(800, 600);
         this.setLocationRelativeTo(null);
@@ -33,7 +56,7 @@ public class FenetreAcceuil extends JFrame {
         this.setContentPane(panneau);
 
         this.setVisible(true);
-        new Audio("Generique.wav");
+        new Audio("Generique.wav",theme);
 
         start.addActionListener(new ActionListener() {
             @Override
@@ -76,7 +99,7 @@ public class FenetreAcceuil extends JFrame {
 
     private void launchGame() {
         getContentPane().removeAll();
-        setContentPane(new memoryGameGUI(new ControleurJeu(nbessais), getContentPane().getSize(), this));
+        setContentPane(new memoryGameGUI(new ControleurJeu(nbessais), getContentPane().getSize(), this,theme));
         revalidate();
     }
 
